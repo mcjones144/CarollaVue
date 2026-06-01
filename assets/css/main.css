@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .gold-line {
+    @apply w-12 h-0.5 bg-gold;
+  }
+  .section-label {
+    @apply text-gold text-xs uppercase tracking-[0.2em] font-medium;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
