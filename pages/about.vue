@@ -1,9 +1,13 @@
 <template>
   <div>
     <!-- Hero -->
-    <section class="relative pt-40 pb-24 bg-charcoal-light overflow-hidden">
-      <div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(circle_at_70%_50%,#C9A84C,transparent_60%)]" />
-      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <section class="relative h-[60vh] min-h-[420px] flex items-end overflow-hidden">
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        :style="{ backgroundImage: `url(${aboutHero})` }"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">
         <p class="section-label mb-3">About</p>
         <div class="w-10 h-px bg-gold mb-6" />
         <h1 class="font-serif text-5xl lg:text-6xl font-semibold text-white max-w-2xl leading-tight">Who we are</h1>
@@ -48,6 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import aboutHero from '~/public/uk-hero.jpg'
+
 useHead({ title: 'About — Carolla Asset Management' })
 
 const pillars = [

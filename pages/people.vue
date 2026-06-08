@@ -1,12 +1,17 @@
 <template>
   <div>
-    <!-- Header -->
-    <section class="pt-40 pb-20 bg-charcoal-light">
-      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- Hero -->
+    <section class="relative h-[60vh] min-h-[420px] flex items-end overflow-hidden">
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        :style="{ backgroundImage: `url(${peopleHero})` }"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">
         <p class="section-label mb-3">The Team</p>
         <div class="w-10 h-px bg-gold mb-6" />
         <h1 class="font-serif text-5xl lg:text-6xl font-semibold text-white">Our People</h1>
-        <p class="text-white/50 mt-6 max-w-xl leading-relaxed">
+        <p class="text-white/50 mt-4 max-w-xl leading-relaxed">
           A team of experienced property, finance and technology professionals united by a shared commitment to delivering value in partnership.
         </p>
       </div>
@@ -15,23 +20,70 @@
     <!-- Team grid -->
     <section class="py-24">
       <div class="max-w-7xl mx-auto px-6 lg:px-12">
-        <div class="grid md:grid-cols-2 gap-16 lg:gap-20">
-          <article v-for="member in team" :key="member.name" class="group">
-            <div class="overflow-hidden mb-6 aspect-[3/4] max-w-xs">
-              <img :src="member.img" :alt="member.name" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+          <button
+            v-for="member in team"
+            :key="member.name"
+            class="group text-left"
+            @click="selectedMember = member"
+          >
+            <div class="overflow-hidden mb-4 aspect-[3/4]">
+              <img
+                :src="member.img"
+                :alt="member.name"
+                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+              />
             </div>
-            <p class="section-label mb-2">{{ member.role }}</p>
-            <h2 class="font-serif text-2xl text-white font-semibold mb-4">{{ member.name }}</h2>
-            <p class="text-white/55 leading-relaxed text-sm">{{ member.bio }}</p>
-          </article>
+            <p class="section-label mb-1">{{ member.role }}</p>
+            <h2 class="font-serif text-lg text-white font-semibold group-hover:text-gold transition-colors">{{ member.name }}</h2>
+          </button>
         </div>
       </div>
     </section>
+
+    <!-- Modal -->
+    <Transition name="fade">
+      <div
+        v-if="selectedMember"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+        @click.self="selectedMember = null"
+      >
+        <div class="bg-charcoal-light border border-white/10 max-w-2xl w-full p-8 relative flex flex-col sm:flex-row gap-8">
+          <!-- Close -->
+          <button
+            class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors text-xl leading-none"
+            @click="selectedMember = null"
+          >
+            ✕
+          </button>
+
+          <!-- Photo -->
+          <div class="flex-shrink-0">
+            <img
+              :src="selectedMember.img"
+              :alt="selectedMember.name"
+              class="w-40 h-52 object-cover object-top"
+            />
+          </div>
+
+          <!-- Text -->
+          <div class="flex-1 pt-1">
+            <p class="section-label mb-2">{{ selectedMember.role }}</p>
+            <h2 class="font-serif text-2xl text-white font-semibold mb-4">{{ selectedMember.name }}</h2>
+            <p class="text-white/60 leading-relaxed text-sm">{{ selectedMember.bio }}</p>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
+import peopleHero from '~/public/people-hero.jpg'
+
 useHead({ title: 'People — Carolla Asset Management' })
+
+const selectedMember = ref<typeof team[0] | null>(null)
 
 const team = [
   {
@@ -60,3 +112,12 @@ const team = [
   },
 ]
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+</style>
