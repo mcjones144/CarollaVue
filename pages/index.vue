@@ -95,9 +95,7 @@
 useHead({ title: 'Carolla Asset Management' })
 
 const stats = [
-  { number: '30+', label: 'Years combined experience' },
-  { number: 'JV', label: 'Joint venture model' },
-  { number: '2', label: 'Active markets' },
+  { number: '3', label: 'Active markets' },
   { number: '2022', label: 'Founded' },
 ]
 
