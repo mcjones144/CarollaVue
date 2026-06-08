@@ -52,7 +52,7 @@ const projects = [
     status: 'Planning Approved',
     type: 'Student Accommodation / Cultural Centre',
     description: "Carolla have been in a Joint Venture with the Charity holding the freehold of the Caspian Cultural Centre, in Acton, West London since 2019, having agreed to develop a new cultural centre for the Charity on their behalf. Carolla's solution was to design a building that would provide 105 student rooms over six floors above the new centre, to be held on a long-term ground lease. The project was given unanimous support by the Planning Committee and was approved in early 2023.",
-    detail: 'Work is due to start on site late in 2025.',
+    detail: 'Work is due to start on site in 2026/2027.',
   },
   {
     id: 'wheatley',
